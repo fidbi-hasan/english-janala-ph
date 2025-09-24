@@ -4,32 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Janala</title>
+  <!-- google fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- google fonts -->
+  <link rel="icon" href="https://img.icons8.com/?size=96&id=gXoJoyTtYXFg&format=png" type="image/x-icon"> 
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/37420c2a89.js" crossorigin="anonymous"></script>
+  <!-- font awesome -->
   <!-- daisy ui -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <!-- daisy ui -->
+  <style>
+    * {
+      font-family: "Hind Siliguri", sans-serif;
+    }
+  </style>
 </head>
 <body class="sm:pt-16 pt-20">
   <header>
     <nav class="bg-[#f0f0f0] border-b-1 border-[#C6BDBD40] fixed top-0 left-0 right-0 z-40 sm:py-0 py-3">
       <div class="navbar w-11/12 mx-auto gap-5 sm:flex-row sm:justify-between flex-col justify-center">
         <div class="sm:navbar-start">
-          <a href="index.html" class="flex font-bold">
-            English <img class="w-[30px]" src="assets/logo.png"> জানালা
+          <a href="index.html" class="flex font-bold items-center">
+            English <img class="w-[30px]" src="https://img.icons8.com/?size=96&id=gXoJoyTtYXFg&format=png"> জানালা
           </a>
         </div>
         <div class="sm:navbar-end flex gap-3">
           <a href="#faq-container">
-            <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-            <img src="assets/fa-circle-question.png">
-              FAQ
+            <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+              <i class="fa-brands fa-windows"></i> FAQ
             </button>
           </a>
-          <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-            <img src="assets/fa-book-open.png">  Learn
-          </button>
-          <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-            <img src="assets/fa-arrow-right-from-bracket.png"> Logout
+          <a href="#learn-vocabulary-container">
+            <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+              <i class="fa-solid fa-book-open"></i> Learn
+            </button>
+          </a>
+          <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
           </button>
         </div>
       </div>
@@ -60,39 +75,39 @@
   </header>
   <main>
     <!-- section: let's learn vocabularies -->
-    <section id="learn-vocabulary-container" class="my-8">
+    <section id="learn-vocabulary-container" class="my-15">
       <h2 class="text-center sm:text-[36px] font-bold text-lg">
         <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
       </h2>
-      <div id="lesson-button-container" class="w-11/12 mx-auto flex justify-center gap-2 flex-wrap mt-4">
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 1
+      <div id="lesson-button-container" class="w-11/12 mx-auto flex justify-center gap-3 flex-wrap mt-4">
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 1
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 2
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 2
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 3
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 3
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 4
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 4
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 5
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 5
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 6
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 6
         </button>
-        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5]">
-          <img src="assets/fa-book-open.png">  Lesson - 7
+        <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <i class="fa-solid fa-book-open"></i> Lesson - 7
         </button>
       </div>
       <div id="single-lesson-container" class="w-11/12 mx-auto rounded my-8 py-8 bg-[#f8f8f8]">
           <div class="text-center">
-              <p class="sm:text-sm text-xs text-gray-400">
-                আপনি এখনো কোন Lesson Select করেন ন
+              <p class="sm:text-sm text-xs text-gray-500">
+                আপনি এখনো কোন Lesson Select করেন নি।
               </p>
-              <p class="py-6 sm:text-3xl text-xl">
+              <p class="py-6 sm:text-3xl text-xl font-bold">
                 একটি Lesson Select করুন!
               </p>
           </div>
@@ -100,7 +115,7 @@
     </section>
     <!-- section: let's learn vocabularies -->
 
-    <section id="faq-container" class="w-11/12 mx-auto my-10">
+    <section id="faq-container" class="w-10/12 mx-auto my-15">
       <h2 class="text-center sm:text-[36px] font-bold text-lg">
         <span class="text-[#00BCFF]">Frequently</span> Asked Questions
       </h2>
@@ -158,7 +173,7 @@
       <aside>
         <div>
           <a href="index.html" class="flex items-center font-bold">
-            English <img class="w-[30px]" src="assets/logo.png"> জানালা
+            English <img class="w-[30px]" src="https://img.icons8.com/?size=96&id=gXoJoyTtYXFg&format=png"> জানালা
           </a>
           <p class="py-2">
             ইংরেজি শিখুন সহজে
