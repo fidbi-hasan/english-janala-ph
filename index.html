@@ -30,7 +30,7 @@
 </head>
 <body class="sm:pt-16 pt-20">
   <header>
-    <nav class="bg-[#f0f0f0] border-b-1 border-[#C6BDBD40] fixed top-0 left-0 right-0 z-40 sm:py-0 py-3">
+    <nav id="navbar" class="bg-[#f0f0f0] border-b-1 border-[#C6BDBD40] fixed top-0 left-0 right-0 z-40 sm:py-0 py-3 hidden">
       <div class="navbar w-11/12 mx-auto gap-5 sm:flex-row sm:justify-between flex-col justify-center">
         <div class="sm:navbar-start">
           <a href="index.html" class="flex font-bold items-end">
@@ -48,7 +48,7 @@
               <i class="fa-solid fa-book-open"></i> Learn
             </button>
           </a>
-          <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+          <button onclick="logout()" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
             <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
           </button>
         </div>
@@ -67,9 +67,9 @@
             <div class="card bg-base-100 w-full max-w-sm shrink-0">
               <div class="card-body p-0">
                 <fieldset class="fieldset">
-                  <input type="text" class="input sm:w-[320px] w-full focus-within:outline-none" placeholder="Enter your name" />
-                  <input type="password" class="input mt-1 sm:w-[320px] w-full focus-within:outline-none" placeholder="*******" />
-                  <button class="btn sm:w-30 mt-1 bg-[#422AD5] text-white">Get Started</button>
+                  <input id="user-name" type="text" class="input sm:w-[320px] w-full focus-within:outline-none" placeholder="Enter your name" />
+                  <input id="user-password" type="password" class="input mt-1 sm:w-[320px] w-full focus-within:outline-none" placeholder="*******" />
+                  <button onclick="login()" class="btn sm:w-30 mt-1 bg-[#422AD5] text-white">Get Started</button>
                 </fieldset>
               </div>
             </div>
@@ -78,7 +78,7 @@
       </div>
     </section>
   </header>
-  <main>
+  <main id="main-section" class="hidden">
     <!-- section: let's learn vocabularies -> dynamic section -->
     <section id="learn-vocabulary-container" class="my-15">
       <h2 class="text-center sm:text-[36px] font-bold text-lg">
@@ -87,16 +87,34 @@
       <div id="lesson-button-container" class="w-11/12 mx-auto flex justify-center gap-3 flex-wrap mt-4">
         
       </div>
+      
+      <section id="loading-spinner" class="text-center mt-10 hidden">
+        <span class="loading loading-ring loading-md"></span>
+      </section>
+
       <div id="single-lesson-container" class="w-11/12 mx-auto rounded-lg my-8 sm:p-5 p-2 bg-[#f8f8f8] grid sm:grid-cols-4 grid-cols-2 sm:gap-5 gap-2">
-          <div id="no-lesson-selected" class="text-center mx-auto col-span-4">
-              <p class="sm:text-sm text-xs text-gray-500">
-                আপনি এখনো কোন Lesson Select করেন নি।
-              </p>
-              <p class="py-6 sm:text-3xl text-xl font-bold">
-                একটি Lesson Select করুন!
-              </p>
-          </div>
+        
       </div>
+    </section>
+
+    <section id="modal-container">
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+      <dialog id="lesson_details" class="modal">
+        <div class="modal-box w-[400px]">
+          <div id="lesson-details-container" class="bg-gray-50 p-3 rounded-lg">
+
+          </div>
+          <div class="modal-action flex justify-start mt-0">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white mt-3 rounded-lg">
+                <i class="fa-solid fa-circle-check"></i> Complete Learning
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </section>
     <!-- section: let's learn vocabularies -->
 

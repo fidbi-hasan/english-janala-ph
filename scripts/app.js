@@ -1,25 +1,64 @@
+// login functionality (no db)
+const login = () => {
+  const navBar = document.getElementById('navbar');
+  const mainSection = document.getElementById('main-section');
+  const usersName = document.getElementById('user-name').value;
+  const userPass = document.getElementById('user-password').value;
+
+  if(usersName === '') {
+    alert('Please enter your name');
+    return;
+  }
+
+  if(userPass === '' || userPass !== '123456') {
+    alert('Invalid password!');
+    return;
+  }
+
+  navBar.classList.remove('hidden');
+  mainSection.classList.remove('hidden');
+
+  document.getElementById('user-name').value = '';
+  document.getElementById('user-password').value = '';
+}
+
+// logout functionality
+const logout = () => {
+  const navBar = document.getElementById('navbar');
+  const mainSection = document.getElementById('main-section');
+
+  navBar.classList.add('hidden');
+  mainSection.classList.add('hidden');
+}
+
+// show loading spinner
+const showLoadingSpinner = () => {
+  document.getElementById('loading-spinner').classList.remove('hidden');
+  document.getElementById('single-lesson-container').classList.add('hidden');
+}
+
+// hide loading spinner
+const hideLoadingSpinner = () => {
+  document.getElementById('loading-spinner').classList.add('hidden');
+  document.getElementById('single-lesson-container').classList.remove('hidden');
+}
+
 // show no lesson selected text
 const showNoLessonSelectedText = () => {
   removeActiveClass();
-  const noLessonSelectedText = document.getElementById('no-lesson-selected');
+  
+  const singleLessonContainer = document.getElementById('single-lesson-container');
 
-  if(noLessonSelectedText) noLessonSelectedText.classList.remove('hidden');
-
-  noLessonSelectedText.innerHTML = `
-    <p class="sm:text-sm text-xs text-gray-500">
-      আপনি এখনো কোন Lesson Select করেন নি।
-    </p>
-    <p class="py-6 sm:text-3xl text-xl font-bold">
-      একটি Lesson Select করুন!
-    </p>
+  singleLessonContainer.innerHTML = `
+    <div id="no-lesson-selected" class="text-center mx-auto col-span-4">
+      <p class="sm:text-sm text-xs text-gray-500">
+        আপনি এখনো কোন Lesson Select করেন নি।
+      </p>
+      <p class="py-6 sm:text-3xl text-xl font-bold">
+        একটি Lesson Select করুন!
+      </p>
+    </div>
   `;
-}
-
-// hide no lesson selected text
-const hideNoLessonSelectedText = () => {
-  const noLessonSelectedText = document.getElementById('no-lesson-selected');
-
-  noLessonSelectedText.classList.add('hidden');
 }
 
 // remove active class
@@ -42,6 +81,8 @@ const fetchAllLessons = async () => {
 
 // fetch lesson by level
 const fetchLessonByLevel = async (level) => {
+  showLoadingSpinner();
+  
   const url = `https://openapi.programming-hero.com/api/level/${level}`;
   const res = await fetch(url);
   const data = await res.json();
@@ -49,6 +90,39 @@ const fetchLessonByLevel = async (level) => {
   removeActiveClass();
   document.getElementById(`lesson-${level}`).classList.add('active');
   showLessonBylevel(data);
+}
+
+// fetch lesson details
+const fetchLessonDetails = async (lessonId) => {
+  const url = `https://openapi.programming-hero.com/api/word/${lessonId}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  showLessonDetails(data.data); 
+}
+
+// show lesson details
+const showLessonDetails = (lessonDetailsObj) => {
+  console.log(lessonDetailsObj);
+  document.getElementById('lesson_details').showModal();
+
+  const lessonDetailsContainer = document.getElementById('lesson-details-container');
+    
+  lessonDetailsContainer.innerHTML = `
+    <div class="card card-dash">
+      <h5 class="text-2xl font-semibold mb-2">
+        ${lessonDetailsObj.word} (<i class="fa-solid fa-microphone-lines"></i> ${lessonDetailsObj.pronunciation})
+      </h5>
+      <p class="text-xs font-bold">Meaning</p>
+      <p class="text-gray-500 mb-2">${lessonDetailsObj.meaning === null ? 'no data found' : lessonDetailsObj.meaning}</p>
+      <p class="text-xs font-bold">Example</p>
+      <p class="text-gray-500 mb-2">${lessonDetailsObj.sentence}</p>
+      <p class="text-xs font-bold">সমার্থক শব্দ গুলো</p>
+      <p class="text-gray-500 mb-2">${lessonDetailsObj.synonyms.length === 0 ? 'no data found' : lessonDetailsObj.synonyms}</p>
+    </div>
+  `;
+
+  hideLoadingSpinner();
 }
 
 // show lesson by level
@@ -74,21 +148,22 @@ const showLessonBylevel = (lessonByLevelObj) => {
   for(const SinglelessonByLevelObj of lessonByLevelArr) {
     const singleLessonCard = document.createElement('div');
     singleLessonCard.innerHTML = `
-      <div class="sm:p-5 bg-white rounded-lg text-center shadow-sm sm:h-[156px] p-3">
+      <div class="sm:p-5 bg-white rounded-lg text-center shadow-sm p-3">
         <h5 class="text-center sm:text-2xl text-xl font-bold">
           ${SinglelessonByLevelObj.word} 
           <span class="text-gray-500 sm:text-base text-xs font-normal">(${SinglelessonByLevelObj.pronunciation})</span>
         </h5>
-        <p class="text-[#422AD5] sm:text-lg text-base">Meaning: ${SinglelessonByLevelObj.meaning}</p>
+        <p class="text-[#422AD5] sm:text-lg text-base">Meaning: ${SinglelessonByLevelObj.meaning === null ? 'no data found' : SinglelessonByLevelObj.meaning}</p>
         <div class="flex justify-between mt-5">
-          <i class="fa-solid fa-circle-info text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm"></i>
-          <i class="fa-solid fa-volume-high text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm"></i>
+          <i onclick="fetchLessonDetails(${SinglelessonByLevelObj.id})" class="fa-solid fa-circle-info text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm cursor-pointer hover:shadow-inner transition-shadow"></i>
+          <i class="fa-solid fa-volume-high text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm cursor-pointer hover:shadow-inner transition-shadow"></i>
         </div>
       </div>
     `;
 
     singleLessonContainer.append(singleLessonCard);
   }
+  hideLoadingSpinner();
 }
 
 // show all lessons
@@ -118,3 +193,4 @@ const showAllLessons = (lessonsObj) => {
 }
 
 fetchAllLessons();
+showNoLessonSelectedText();
