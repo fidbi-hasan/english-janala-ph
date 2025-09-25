@@ -1,5 +1,6 @@
 // show no lesson selected text
 const showNoLessonSelectedText = () => {
+  removeActiveClass();
   const noLessonSelectedText = document.getElementById('no-lesson-selected');
 
   if(noLessonSelectedText) noLessonSelectedText.classList.remove('hidden');
@@ -21,6 +22,15 @@ const hideNoLessonSelectedText = () => {
   noLessonSelectedText.classList.add('hidden');
 }
 
+// remove active class
+function removeActiveClass() {
+  const activeButtons = document.getElementsByClassName('active');
+
+  for(const activeButton of activeButtons) {
+    activeButton.classList.remove('active');
+  }
+}
+
 // fetch all lessons
 const fetchAllLessons = async () => {
   const url = `https://openapi.programming-hero.com/api/levels/all`;
@@ -36,6 +46,8 @@ const fetchLessonByLevel = async (level) => {
   const res = await fetch(url);
   const data = await res.json();
 
+  removeActiveClass();
+  document.getElementById(`lesson-${level}`).classList.add('active');
   showLessonBylevel(data);
 }
 
@@ -68,7 +80,7 @@ const showLessonBylevel = (lessonByLevelObj) => {
           <span class="text-gray-500 text-base font-normal">(${SinglelessonByLevelObj.pronunciation})</span>
         </h5>
         <p class="text-[#422AD5]">Meaning: ${SinglelessonByLevelObj.meaning}</p>
-        <div class="flex justify-between mt-5 px-3">
+        <div class="flex justify-between mt-5">
           <i class="fa-solid fa-circle-info text-gray-500 bg-[#1A91FF10] p-3 rounded-sm"></i>
           <i class="fa-solid fa-volume-high text-gray-500 bg-[#1A91FF10] p-3 rounded-sm"></i>
         </div>
@@ -88,7 +100,7 @@ const showAllLessons = (lessonsObj) => {
     const lessonBtnDiv = document.createElement('div');
 
     lessonBtnDiv.innerHTML = `
-      <button onclick="fetchLessonByLevel('${lesson.level_no}')" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+      <button id="lesson-${lesson.level_no}" onclick="fetchLessonByLevel('${lesson.level_no}')" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
           <i class="fa-solid fa-book-open"></i> Lesson - ${lesson.level_no}
       </button>
     `;
