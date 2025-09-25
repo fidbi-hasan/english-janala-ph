@@ -74,15 +74,15 @@ const showLessonBylevel = (lessonByLevelObj) => {
   for(const SinglelessonByLevelObj of lessonByLevelArr) {
     const singleLessonCard = document.createElement('div');
     singleLessonCard.innerHTML = `
-      <div class="p-5 bg-white rounded-lg text-center shadow-sm">
-        <h5 class="text-center text-2xl font-bold">
+      <div class="sm:p-5 bg-white rounded-lg text-center shadow-sm sm:h-[156px] p-3">
+        <h5 class="text-center sm:text-2xl text-xl font-bold">
           ${SinglelessonByLevelObj.word} 
-          <span class="text-gray-500 text-base font-normal">(${SinglelessonByLevelObj.pronunciation})</span>
+          <span class="text-gray-500 sm:text-base text-xs font-normal">(${SinglelessonByLevelObj.pronunciation})</span>
         </h5>
-        <p class="text-[#422AD5]">Meaning: ${SinglelessonByLevelObj.meaning}</p>
+        <p class="text-[#422AD5] sm:text-lg text-base">Meaning: ${SinglelessonByLevelObj.meaning}</p>
         <div class="flex justify-between mt-5">
-          <i class="fa-solid fa-circle-info text-gray-500 bg-[#1A91FF10] p-3 rounded-sm"></i>
-          <i class="fa-solid fa-volume-high text-gray-500 bg-[#1A91FF10] p-3 rounded-sm"></i>
+          <i class="fa-solid fa-circle-info text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm"></i>
+          <i class="fa-solid fa-volume-high text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm"></i>
         </div>
       </div>
     `;
