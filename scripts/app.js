@@ -2,19 +2,37 @@
 const login = () => {
   const navBar = document.getElementById('navbar');
   const mainSection = document.getElementById('main-section');
+  const heroSection = document.getElementById('hero-section');
   const usersName = document.getElementById('user-name').value;
   const userPass = document.getElementById('user-password').value;
 
   if(usersName === '') {
-    alert('Please enter your name');
+    // alert('Please enter your name');
+    Swal.fire({
+      title: "Login Error!",
+      text: "Please enter your name to login.",
+      icon: "error"
+    });
     return;
   }
 
   if(userPass === '' || userPass !== '123456') {
-    alert('Invalid password!');
+    // alert('Invalid password!');
+    Swal.fire({
+      title: "Login Error!",
+      text: "Please recheck your password.",
+      icon: "error"
+    });
     return;
   }
 
+  Swal.fire({
+    title: "Login Success!",
+    text: "You have been successfully logged in.",
+    icon: "success"
+  });
+
+  heroSection.classList.add('hidden');
   navBar.classList.remove('hidden');
   mainSection.classList.remove('hidden');
 
@@ -24,9 +42,15 @@ const login = () => {
 
 // logout functionality
 const logout = () => {
+  Swal.fire({
+    title: "You have been logged out!",
+    icon: "success"
+  });
   const navBar = document.getElementById('navbar');
   const mainSection = document.getElementById('main-section');
+  const heroSection = document.getElementById('hero-section');
 
+  heroSection.classList.remove('hidden');
   navBar.classList.add('hidden');
   mainSection.classList.add('hidden');
 }
