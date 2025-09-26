@@ -96,17 +96,29 @@ const fetchLessonByLevel = async (level) => {
 const fetchLessonDetails = async (lessonId) => {
   const url = `https://openapi.programming-hero.com/api/word/${lessonId}`;
   const res = await fetch(url);
-  const data = await res.json();
+  const data = await res.json(); 
 
-  showLessonDetails(data.data); 
+  showLessonDetails(data.data);
 }
 
 // show lesson details
-const showLessonDetails = (lessonDetailsObj) => {
-  console.log(lessonDetailsObj);
+const showLessonDetails = (lessonDetailsObj) => {  
   document.getElementById('lesson_details').showModal();
 
   const lessonDetailsContainer = document.getElementById('lesson-details-container');
+
+  function showSynonyms(synonymsArr) {
+
+    let synonymsContainer = '';
+
+    for (const synonym of synonymsArr) {
+      const capSynonym = synonym.charAt(0).toUpperCase() + synonym.slice(1); // from freeCodeCamp
+
+      synonymsContainer += `<span class="py-[2px] px-2 bg-[#EDF7FF] border border-[#D7E4EF] rounded-sm text-sm font-thin">${capSynonym}</span>`;
+    }
+
+    return `<div class="flex justify-start gap-2">${synonymsContainer}<div>`
+  }
     
   lessonDetailsContainer.innerHTML = `
     <div class="card card-dash">
@@ -118,7 +130,7 @@ const showLessonDetails = (lessonDetailsObj) => {
       <p class="text-xs font-bold">Example</p>
       <p class="text-gray-500 mb-2">${lessonDetailsObj.sentence}</p>
       <p class="text-xs font-bold">সমার্থক শব্দ গুলো</p>
-      <p class="text-gray-500 mb-2">${lessonDetailsObj.synonyms.length === 0 ? 'no data found' : lessonDetailsObj.synonyms}</p>
+      <p class="text-gray-500 mb-2">${lessonDetailsObj.synonyms.length === 0 ? 'no data found' : showSynonyms(lessonDetailsObj.synonyms)}</p>
     </div>
   `;
 
