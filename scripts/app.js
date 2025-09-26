@@ -125,6 +125,13 @@ const fetchLessonDetails = async (lessonId) => {
   showLessonDetails(data.data);
 }
 
+// pronounce word
+ const pronounceWord = (word) => {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-EN'; // English
+    window.speechSynthesis.speak(utterance);
+  }
+
 // show lesson details
 const showLessonDetails = (lessonDetailsObj) => {  
   document.getElementById('lesson_details').showModal();
@@ -163,7 +170,6 @@ const showLessonDetails = (lessonDetailsObj) => {
 
 // show lesson by level
 const showLessonBylevel = (lessonByLevelObj) => {
-  
   const singleLessonContainer = document.getElementById('single-lesson-container');
   singleLessonContainer.innerHTML = '';
   const lessonByLevelArr = lessonByLevelObj.data;
@@ -182,6 +188,7 @@ const showLessonBylevel = (lessonByLevelObj) => {
   }
 
   for(const SinglelessonByLevelObj of lessonByLevelArr) {
+    console.log(SinglelessonByLevelObj);
     const singleLessonCard = document.createElement('div');
     singleLessonCard.innerHTML = `
       <div class="sm:p-5 bg-white rounded-lg text-center shadow-sm p-3">
@@ -192,7 +199,7 @@ const showLessonBylevel = (lessonByLevelObj) => {
         <p class="text-[#422AD5] sm:text-lg text-base">Meaning: ${SinglelessonByLevelObj.meaning === null ? 'no data found' : SinglelessonByLevelObj.meaning}</p>
         <div class="flex justify-between mt-5">
           <i onclick="fetchLessonDetails(${SinglelessonByLevelObj.id})" class="fa-solid fa-circle-info text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm cursor-pointer hover:shadow-inner transition-shadow"></i>
-          <i class="fa-solid fa-volume-high text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm cursor-pointer hover:shadow-inner transition-shadow"></i>
+          <i onclick="pronounceWord('${SinglelessonByLevelObj.word}')" class="fa-solid fa-volume-high text-gray-500 sm:bg-[#1A91FF10] w-10 p-3 rounded-sm cursor-pointer hover:shadow-inner transition-shadow"></i>
         </div>
       </div>
     `;
