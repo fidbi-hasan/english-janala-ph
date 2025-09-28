@@ -41,14 +41,14 @@
           </a>
         </div>
         <div class="sm:navbar-end flex gap-3">
-          <a href="#faq-container">
-            <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
-              <i class="fa-brands fa-windows"></i> FAQ
+          <a href="#learn-vocabulary-container">
+            <button onclick="activateNavButton('btn-learn')" id="btn-learn" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+              <i class="fa-solid fa-book-open"></i> Learn
             </button>
           </a>
-          <a href="#learn-vocabulary-container">
-            <button class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
-              <i class="fa-solid fa-book-open"></i> Learn
+          <a href="#faq-container">
+            <button onclick="activateNavButton('btn-faq')" id="btn-faq" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
+              <i class="fa-brands fa-windows"></i> FAQ
             </button>
           </a>
           <button onclick="logout()" class="btn btn-sm text-[#422AD5] bg-[#ffffff00] border border-[#422AD5] hover:bg-[#422AD5] hover:text-white">
@@ -96,7 +96,7 @@
         <span class="loading loading-ring loading-md"></span>
       </section>
 
-      <div id="single-lesson-container" class="w-11/12 mx-auto rounded-lg my-8 sm:p-5 p-2 bg-[#f8f8f8] grid sm:grid-cols-4 grid-cols-2 sm:gap-5 gap-2">
+      <div id="single-lesson-container" class="w-11/12 mx-auto rounded-lg my-8 sm:p-5 p-2 bg-[#f8f8f8] grid sm:grid-cols-3 grid-cols-1 sm:gap-5 gap-2">
         
       </div>
     </section>

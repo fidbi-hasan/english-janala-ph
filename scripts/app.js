@@ -1,3 +1,11 @@
+// navbar buttons active 
+
+const activateNavButton = (btnId) => {
+  removeActiveClass();
+  const targetBtn = document.getElementById(`${btnId}`);
+  targetBtn.classList.add('active');
+}
+
 // login functionality (no db)
 const login = () => {
   const navBar = document.getElementById('navbar');
@@ -190,7 +198,6 @@ const showLessonBylevel = (lessonByLevelObj) => {
   }
 
   for(const SinglelessonByLevelObj of lessonByLevelArr) {
-    console.log(SinglelessonByLevelObj);
     const singleLessonCard = document.createElement('div');
     singleLessonCard.innerHTML = `
       <div class="sm:p-5 bg-white rounded-lg text-center shadow-sm p-3">
