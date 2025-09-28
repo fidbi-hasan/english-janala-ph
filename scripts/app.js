@@ -32,7 +32,7 @@ const login = () => {
     icon: "success"
   });
 
-  document.getElementById('body').classList.add('pt-20');
+  document.getElementById('body').classList.add('pt-40');
 
   heroSection.classList.add('hidden');
   navBar.classList.remove('hidden');
