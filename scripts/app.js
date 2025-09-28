@@ -32,6 +32,8 @@ const login = () => {
     icon: "success"
   });
 
+  document.getElementById('body').classList.add('pt-20');
+
   heroSection.classList.add('hidden');
   navBar.classList.remove('hidden');
   mainSection.classList.remove('hidden');
